@@ -1,0 +1,30 @@
+package DBConnection;
+
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class DBConnectionImpl implements DBConnection{
+
+    private static final String URL = "jdbc:mysql://140.124.181.21:8787/researchreward?user=dev&password=Islab@1221&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+//    private static final String URL = "jdbc:mysql://140.124.181.21:8787/researchreward?user=centos&password=Islab@1221&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+//    private static final String URL = "jdbc:mysql://140.124.181.4:8787/rss?user=researchreward&password=islab1221&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+//    private static final String URL = "jdbc:mysql://127.0.0.1:8787/rss?user=researchreward&password=islab1221&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+//    private static final String URL = "jdbc:mysql://127.0.0.1:3306/rss?user=root&password=islab1221&useUnicode=true&characterEncoding=utf8&serverTimezone=UTC";
+//    private static final String URL = "jdbc:mysql://140.124.14.188:3306/researchreward?user=researchreward_schreop&password=res3d11D@S$3acschbas!&useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC";
+
+    @Override
+    public Connection getConnection() {
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getConnection(URL);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException ex){
+            ex.printStackTrace();
+        }
+        return conn;
+    }
+}
